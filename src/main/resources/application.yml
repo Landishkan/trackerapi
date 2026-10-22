@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: task-tracker
+
+  datasource:
+    # Параметры подключения к PostgreSQL
+    # Их можно переопределить переменными окружения, например:
+    # DB_URL, DB_USERNAME, DB_PASSWORD
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tasktracker}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # update - Hibernate сам будет создавать/менять таблицы.
+      # Подходит для локальной разработки.
+      # Для продакшена лучше использовать Flyway или Liquibase.
+      ddl-auto: update
+
+    # Показывать SQL в консоли
+    show-sql: true
+
+    properties:
+      hibernate:
+        # Красивый формат SQL в логах
+        format_sql: true
+
+server:
+  port: 8080
